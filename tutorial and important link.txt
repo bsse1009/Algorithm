@@ -1,0 +1,5 @@
+1. Top 10 Algorithms and Data Structures for Competitive Programming
+https://www.geeksforgeeks.org/top-algorithms-and-data-structures-for-competitive-programming/#algo4
+
+2. inspiration for competitive programming :
+https://medium.com/@andreimargeloiu/how-to-prepare-for-competitive-programming-396d557e0c12#.75eloyxza
