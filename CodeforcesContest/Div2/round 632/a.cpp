@@ -20,9 +20,6 @@ ll gcd(ll a,ll b) { return b==0?a:gcd(b,a%b); }
 
 const int MAXN = 200000;
 ll n,m;
-ll arr[MAXN];
-vector<ll> v;
-vector<pll>v2;
 
 void print(vector <ll> &v){cout << v.size() << endl;for(int i = 0; i < v.size(); i++){pf("%lld ", v[i]);}pf("\n");}
 void print(vector <pll> &v){ cout << v.size() << endl; for(int i = 0; i < v.size(); i++){pf("%lld %lld\n", v[i].first, v[i].second);}}
@@ -45,16 +42,17 @@ void run() {
     cin >> tc;
     while(tc--)
     {
-        cin >> n;
+        cin >> n >> m;
         REP(i,n)
         {
-            ll a,b;
-            cin >> a >> b;
-            v.pb(a);
-            v.pb(b);
-            v2.pb(mp(a,b));
+            REP(j,m)
+            {
+                if (j == 0 || i == n-1)
+                    cout << "B";
+                else cout << "W";
+            }
+            cout << endl;
         }
-        cout << solve() << endl;
     }
 
 }
@@ -64,3 +62,4 @@ int main() {
 	run();
 	return 0;
 }
+

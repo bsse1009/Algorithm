@@ -19,7 +19,7 @@ typedef long long ll;
 ll gcd(ll a,ll b) { return b==0?a:gcd(b,a%b); }
 
 const int MAXN = 200000;
-ll n,m;
+ll n,k;
 ll arr[MAXN];
 vector<ll> v;
 vector<pll>v2;
@@ -41,21 +41,21 @@ ll solve() {
 
 void run() {
     fastio;
-    int tc;
-    cin >> tc;
-    while(tc--)
-    {
-        cin >> n;
-        REP(i,n)
-        {
-            ll a,b;
-            cin >> a >> b;
-            v.pb(a);
-            v.pb(b);
-            v2.pb(mp(a,b));
-        }
-        cout << solve() << endl;
+    cin >> n;
+    REP(i,n) {
+        cin >> arr[i];
+        k += arr[i];
     }
+
+    ll sum1 = 0, sum2 = 0, counter = 0;
+    REP(i,n)
+    {
+        sum1 += arr[i];
+        sum2 += arr[n-i-1];
+        if((k - sum1) != 0) counter++;
+        if((k - sum2) != 0) counter++;
+    }
+    cout << counter << endl;
 
 }
 
@@ -64,3 +64,4 @@ int main() {
 	run();
 	return 0;
 }
+

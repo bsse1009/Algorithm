@@ -18,11 +18,9 @@ typedef long long ll;
 
 ll gcd(ll a,ll b) { return b==0?a:gcd(b,a%b); }
 
-const int MAXN = 200000;
-ll n,m;
+const int MAXN = 1005;
+ll n,k;
 ll arr[MAXN];
-vector<ll> v;
-vector<pll>v2;
 
 void print(vector <ll> &v){cout << v.size() << endl;for(int i = 0; i < v.size(); i++){pf("%lld ", v[i]);}pf("\n");}
 void print(vector <pll> &v){ cout << v.size() << endl; for(int i = 0; i < v.size(); i++){pf("%lld %lld\n", v[i].first, v[i].second);}}
@@ -32,11 +30,34 @@ void print(double d){cout << fixed << setprecision(10) << d << endl;}
 void from_file(void){ freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);}
 
 /* ------------------main section-------------! */
+bool Binary_search(int low, int x)
+{
+    ll high = n;
+    while(low <= high)
+    {
+        ll mid = (low+high)/2;
+        if(arr[mid] == x) return true;
+        if(arr[mid] < x) low = mid+1;
+        else high = mid-1;
+    }
+    return false;
+}
 
-ll solve() {
-    ll ans = 0;
-
-    return ans;
+void solve() {
+    REP(i,n)
+    {
+        for(int j = i+1; j < n; j++)
+        {
+            ll x = k - arr[i]-arr[j];
+            if(Binary_search(j+1,x))
+            {
+                cout << "YES\n";
+                return;
+            }
+        }
+    }
+    cout << "NO\n";
+    return;
 }
 
 void run() {
@@ -46,15 +67,9 @@ void run() {
     while(tc--)
     {
         cin >> n;
-        REP(i,n)
-        {
-            ll a,b;
-            cin >> a >> b;
-            v.pb(a);
-            v.pb(b);
-            v2.pb(mp(a,b));
-        }
-        cout << solve() << endl;
+        REP(i,n) cin >> arr[i];
+        cin >> k;
+        solve();
     }
 
 }

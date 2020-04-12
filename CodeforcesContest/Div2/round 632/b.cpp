@@ -18,11 +18,10 @@ typedef long long ll;
 
 ll gcd(ll a,ll b) { return b==0?a:gcd(b,a%b); }
 
-const int MAXN = 200000;
-ll n,m;
-ll arr[MAXN];
-vector<ll> v;
-vector<pll>v2;
+const int MAXN = 100005;
+ll n,k;
+ll a[MAXN];
+ll b [MAXN];
 
 void print(vector <ll> &v){cout << v.size() << endl;for(int i = 0; i < v.size(); i++){pf("%lld ", v[i]);}pf("\n");}
 void print(vector <pll> &v){ cout << v.size() << endl; for(int i = 0; i < v.size(); i++){pf("%lld %lld\n", v[i].first, v[i].second);}}
@@ -32,11 +31,41 @@ void print(double d){cout << fixed << setprecision(10) << d << endl;}
 void from_file(void){ freopen("input.txt","r",stdin); freopen("output.txt","w",stdout);}
 
 /* ------------------main section-------------! */
+bool finds(set<int>s, int x)
+{
+    set <int> :: iterator itr;
+    for (itr = s.begin(); itr != s.end(); ++itr)
+    {
+        if(*itr == x)
+            return true;
+    }
+    return false;
+}
 
-ll solve() {
-    ll ans = 0;
+void solve() {
+    if (a[0] != b [0]) {cout << "NO\n"; return;}
+    set<int> s;
+    for (int i = 1; i<n; i++)
+    {
+        s.insert(a[i-1]);
+        if (a[i] != b[i])
+        {
+            if (a[i] < b[i]){
+                    if(finds(s,1)) continue;
+                    cout << "NO\n";
+                    return;
+            }
+            if (a[i] > b[i]){
+                    if(finds(s,-1))
+                        continue;
+                    cout << "NO\n";
+                    return;
+            }
+        }
+    }
+    cout << "YES\n";
 
-    return ans;
+    return;
 }
 
 void run() {
@@ -46,15 +75,10 @@ void run() {
     while(tc--)
     {
         cin >> n;
-        REP(i,n)
-        {
-            ll a,b;
-            cin >> a >> b;
-            v.pb(a);
-            v.pb(b);
-            v2.pb(mp(a,b));
-        }
-        cout << solve() << endl;
+        REP(i,n) cin >> a[i];
+        REP(i,n) cin >> b[i];
+
+        solve();
     }
 
 }
@@ -64,3 +88,4 @@ int main() {
 	run();
 	return 0;
 }
+

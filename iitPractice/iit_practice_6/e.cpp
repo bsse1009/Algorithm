@@ -1,3 +1,4 @@
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -19,7 +20,7 @@ typedef long long ll;
 ll gcd(ll a,ll b) { return b==0?a:gcd(b,a%b); }
 
 const int MAXN = 200000;
-ll n,m;
+ll n,k;
 ll arr[MAXN];
 vector<ll> v;
 vector<pll>v2;

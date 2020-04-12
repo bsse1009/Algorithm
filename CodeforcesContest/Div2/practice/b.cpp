@@ -19,10 +19,9 @@ typedef long long ll;
 ll gcd(ll a,ll b) { return b==0?a:gcd(b,a%b); }
 
 const int MAXN = 200000;
-ll n,m;
+ll n,k;
 ll arr[MAXN];
-vector<ll> v;
-vector<pll>v2;
+vector<pll>v[15];
 
 void print(vector <ll> &v){cout << v.size() << endl;for(int i = 0; i < v.size(); i++){pf("%lld ", v[i]);}pf("\n");}
 void print(vector <pll> &v){ cout << v.size() << endl; for(int i = 0; i < v.size(); i++){pf("%lld %lld\n", v[i].first, v[i].second);}}
@@ -41,22 +40,24 @@ ll solve() {
 
 void run() {
     fastio;
-    int tc;
-    cin >> tc;
-    while(tc--)
+    ll x1,y1,x2,y2;
+    cin >> n;
+    cin >> x1 >> y1 >> x2 >> y2;
+    if (x1 == x2)
     {
-        cin >> n;
-        REP(i,n)
-        {
-            ll a,b;
-            cin >> a >> b;
-            v.pb(a);
-            v.pb(b);
-            v2.pb(mp(a,b));
-        }
-        cout << solve() << endl;
+        if(x1== 0 || x1 == n)
+            cout << abs(y1-y2) << endl;
+        else
+            cout << abs(y1-y2) + x1 + x2 << endl;
     }
-
+    else if (y1 == y2)
+    {
+        if(y1== 0 || y1 == n)
+            cout << abs(x1-x2) << endl;
+        else
+            cout << abs(x1-x2) + y1+y2 << endl;
+    }
+    else cout << abs(y1-y2) + abs(x1-x2) << endl;
 }
 
 
@@ -64,3 +65,4 @@ int main() {
 	run();
 	return 0;
 }
+

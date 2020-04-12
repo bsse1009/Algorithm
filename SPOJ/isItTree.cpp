@@ -21,8 +21,7 @@ ll gcd(ll a,ll b) { return b==0?a:gcd(b,a%b); }
 const int MAXN = 200000;
 ll n,m;
 ll arr[MAXN];
-vector<ll> v;
-vector<pll>v2;
+vector<ll> v[MAXN];
 
 void print(vector <ll> &v){cout << v.size() << endl;for(int i = 0; i < v.size(); i++){pf("%lld ", v[i]);}pf("\n");}
 void print(vector <pll> &v){ cout << v.size() << endl; for(int i = 0; i < v.size(); i++){pf("%lld %lld\n", v[i].first, v[i].second);}}
@@ -33,30 +32,20 @@ void from_file(void){ freopen("input.txt","r",stdin); freopen("output.txt","w",s
 
 /* ------------------main section-------------! */
 
-ll solve() {
-    ll ans = 0;
+bool solve() {
 
-    return ans;
 }
 
 void run() {
     fastio;
-    int tc;
-    cin >> tc;
-    while(tc--)
+    cin >> n >> m;
+    REP(i,m)
     {
-        cin >> n;
-        REP(i,n)
-        {
-            ll a,b;
-            cin >> a >> b;
-            v.pb(a);
-            v.pb(b);
-            v2.pb(mp(a,b));
-        }
-        cout << solve() << endl;
+        int a,b;
+        cin >> a >> b;
+        v[a].pb(b);
+        v[b].pb(a);
     }
-
 }
 
 
@@ -64,3 +53,4 @@ int main() {
 	run();
 	return 0;
 }
+
