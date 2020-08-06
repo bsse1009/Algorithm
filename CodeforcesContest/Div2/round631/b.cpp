@@ -40,34 +40,49 @@ void run() {
     while(tc--)
     {
         cin >> n;
+        ll mx = 0;
+        v.clear();
         REP(i,n)
         {
             cin >> arr[i];
+            if (arr[i] > mx) mx = arr[i];
         }
-        v.clear();
-        ll counter = 0;
-        REP(i,n-1)
+        ll mn = n - mx;
+
+        ll sum1 = mx*(mx+1)/2;
+        ll sum2 = mn*(mn+1)/2;
+
+        set<ll> s1,s2,s3,s4;
+        ll ans1=0,ans2=0,ans3=0,ans4=0;
+
+        REP(i,mn){
+            ans1 += arr[i];
+            s1.insert(arr[i]);
+        }
+        REP(i,mx){
+            ans2 += arr[i];
+            s2.insert(arr[i]);
+        }
+        for(int i = mn; i < n; i++)
         {
-            ll n1 = i+1;
-            ll n2 = n-n1;
-            ll sum1 = 0, sum2 = 0;
-            ll ans1 = n1*(n1+1)/2;
-            ll ans2 = n2*(n2+1)/2;
-            set <int, greater <int> >s1,s2;
-
-            REP(j,n1) {
-                sum1 += arr[j];
-                s1.insert(arr[j]);
-            };
-            for (int j = n1; j < n; j++) {sum2 += arr[j]; s2.insert(arr[j]);}
-
-            if (sum1 == ans1 && sum2 == ans2 && s1.size() == n1 && s2.size() == n2){
-                counter++;
-                v.pb(mp(n1,n2));
-            }
+            ans3 += arr[i];
+            s3.insert(arr[i]);
         }
+
+        for(int i = mx; i < n; i++)
+        {
+            ans4 += arr[i];
+            s4.insert(arr[i]);
+        }
+        ll counter = 0;
+        if(sum1 == ans3 && s3.size() == mx && sum2 == ans1 && s1.size() == mn) {
+                counter++;
+                v.pb(mp(mn,mx));
+         }
+        if(sum1 == ans2 && s2.size() == mx && sum2 == ans4 && s4.size() == mn) {counter++; v.pb(mp(mx,mn));}
+
         cout << counter << endl;
-        REP(i,counter) cout << v[i].first << " " << v[i].second << endl;
+        REP(i,v.size()) cout << v[i].first << " " << v[i].second << endl;
     }
 
 }

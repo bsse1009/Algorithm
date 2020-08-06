@@ -1,3 +1,5 @@
+/*circle of monster*/
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -18,11 +20,10 @@ typedef long long ll;
 
 ll gcd(ll a,ll b) { return b==0?a:gcd(b,a%b); }
 
-const int MAXN = 200000;
-ll n,k;
+const int MAXN = 1000000;
+ll n;
 ll arr[MAXN];
-vector<ll> v;
-vector<pll>v2;
+ll brr[MAXN];
 
 void print(vector <ll> &v){cout << v.size() << endl;for(int i = 0; i < v.size(); i++){pf("%lld ", v[i]);}pf("\n");}
 void print(vector <pll> &v){ cout << v.size() << endl; for(int i = 0; i < v.size(); i++){pf("%lld %lld\n", v[i].first, v[i].second);}}
@@ -35,28 +36,30 @@ void from_file(void){ freopen("input.txt","r",stdin); freopen("output.txt","w",s
 
 ll solve() {
     ll ans = 0;
-
+    ll mini = 1e18;
+    REP(i,n)
+    {
+        ll k = (i+1)%n;
+        ll value = min(arr[k],brr[i]);
+        ans += arr[k]-value;
+        mini = min(value, mini);
+    }
+    ans += mini;
     return ans;
 }
 
 void run() {
     fastio;
-    cin >> n;
-    REP(i,n) {
-        cin >> arr[i];
-        k += arr[i];
-    }
-
-    ll sum1 = 0, sum2 = 0, counter = 0;
-    REP(i,n)
+    int tc;
+    cin >> tc;
+    while(tc--)
     {
-        sum1 += arr[i];
-        sum2 += arr[n-i-1];
-        if((k - sum1) != 0) counter++;
-        if((k - sum2) != 0) counter++;
+        cin >> n;
+        REP(i,n) {
+            cin >> arr[i] >> brr[i];
+        }
+        cout << solve() << endl;
     }
-    cout << counter << endl;
-
 }
 
 
